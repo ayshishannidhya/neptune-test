@@ -17,6 +17,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedBranchesRouteImport } from './routes/_authenticated/branches'
 import { Route as AuthenticatedAccountsRouteImport } from './routes/_authenticated/accounts'
+import { Route as AuthenticatedStaffKycRouteImport } from './routes/_authenticated/staff.kyc'
 import { Route as AuthenticatedAccountsIdRouteImport } from './routes/_authenticated/accounts.$id'
 
 const AuthRoute = AuthRouteImport.update({
@@ -58,6 +59,11 @@ const AuthenticatedAccountsRoute = AuthenticatedAccountsRouteImport.update({
   path: '/accounts',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStaffKycRoute = AuthenticatedStaffKycRouteImport.update({
+  id: '/staff/kyc',
+  path: '/staff/kyc',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAccountsIdRoute = AuthenticatedAccountsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/transfer': typeof AuthenticatedTransferRoute
   '/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/transfer': typeof AuthenticatedTransferRoute
   '/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/transfer': typeof AuthenticatedTransferRoute
   '/_authenticated/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/_authenticated/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transfer'
     | '/accounts/$id'
+    | '/staff/kyc'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transfer'
     | '/accounts/$id'
+    | '/staff/kyc'
   id:
     | '__root__'
     | '/'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/transfer'
     | '/_authenticated/accounts/$id'
+    | '/_authenticated/staff/kyc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -194,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAccountsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/staff/kyc': {
+      id: '/_authenticated/staff/kyc'
+      path: '/staff/kyc'
+      fullPath: '/staff/kyc'
+      preLoaderRoute: typeof AuthenticatedStaffKycRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/accounts/$id': {
       id: '/_authenticated/accounts/$id'
       path: '/$id'
@@ -223,6 +242,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedTransferRoute: typeof AuthenticatedTransferRoute
+  AuthenticatedStaffKycRoute: typeof AuthenticatedStaffKycRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -231,6 +251,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedTransferRoute: AuthenticatedTransferRoute,
+  AuthenticatedStaffKycRoute: AuthenticatedStaffKycRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
