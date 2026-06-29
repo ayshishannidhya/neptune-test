@@ -20,7 +20,8 @@ function AccountsPage() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(false);
   const [branchId, setBranchId] = useState<string>("");
-  const [type, setType] = useState<string>("SAVINGS");
+  type AccountType = "SAVINGS" | "CURRENT" | "SALARY" | "FIXED_DEPOSIT" | "RECURRING_DEPOSIT";
+  const [type, setType] = useState<AccountType>("SAVINGS");
   const [deposit, setDeposit] = useState<string>("0");
 
   const accounts = useQuery({
@@ -28,7 +29,7 @@ function AccountsPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("accounts")
-        .select("id, account_number, account_type, balance, status, opened_at, branches(name, ifsc, city)")
+        .select("id, account_number, account_type, balance, is_active, opened_at, branches(name, ifsc, city)")
         .order("opened_at", { ascending: false });
       if (error) throw error;
       return data ?? [];
@@ -83,8 +84,8 @@ function AccountsPage() {
                 </Select>
               </div>
               <div>
-                <Label>Account type</Label>
-                <Select value={type} onValueChange={setType}>
+              <Label>Account type</Label>
+                <Select value={type} onValueChange={(v) => setType(v as AccountType)}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="SAVINGS">Savings</SelectItem>
@@ -113,7 +114,7 @@ function AccountsPage() {
               <CardHeader className="pb-2">
                 <CardTitle className="flex justify-between text-base">
                   <span>{a.account_type}</span>
-                  <span className="text-xs font-normal text-muted-foreground">{a.status}</span>
+                  <span className="text-xs font-normal text-muted-foreground">{a.is_active ? "Active" : "Inactive"}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
