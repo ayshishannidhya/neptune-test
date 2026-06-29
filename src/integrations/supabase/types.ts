@@ -505,6 +505,32 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      fn_open_account: {
+        Args: {
+          p_account_type: Database["public"]["Enums"]["account_type"]
+          p_branch_id: string
+          p_initial_deposit?: number
+        }
+        Returns: {
+          account_number: string
+          account_type: Database["public"]["Enums"]["account_type"]
+          balance: number
+          branch_id: string
+          created_at: string
+          customer_id: string
+          id: string
+          is_active: boolean
+          mode_of_operation: Database["public"]["Enums"]["mode_of_operation"]
+          opened_at: string
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "accounts"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       fn_transfer: {
         Args: {
           _amount: number
