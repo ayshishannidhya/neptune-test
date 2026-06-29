@@ -18,6 +18,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedBranchesRouteImport } from './routes/_authenticated/branches'
 import { Route as AuthenticatedAccountsRouteImport } from './routes/_authenticated/accounts'
 import { Route as AuthenticatedStaffKycRouteImport } from './routes/_authenticated/staff.kyc'
+import { Route as AuthenticatedStaffCustomersRouteImport } from './routes/_authenticated/staff.customers'
 import { Route as AuthenticatedAccountsIdRouteImport } from './routes/_authenticated/accounts.$id'
 
 const AuthRoute = AuthRouteImport.update({
@@ -64,6 +65,12 @@ const AuthenticatedStaffKycRoute = AuthenticatedStaffKycRouteImport.update({
   path: '/staff/kyc',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStaffCustomersRoute =
+  AuthenticatedStaffCustomersRouteImport.update({
+    id: '/staff/customers',
+    path: '/staff/customers',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAccountsIdRoute = AuthenticatedAccountsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/transfer': typeof AuthenticatedTransferRoute
   '/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/staff/customers': typeof AuthenticatedStaffCustomersRoute
   '/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRoutesByTo {
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/transfer': typeof AuthenticatedTransferRoute
   '/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/staff/customers': typeof AuthenticatedStaffCustomersRoute
   '/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRoutesById {
@@ -103,6 +112,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/transfer': typeof AuthenticatedTransferRoute
   '/_authenticated/accounts/$id': typeof AuthenticatedAccountsIdRoute
+  '/_authenticated/staff/customers': typeof AuthenticatedStaffCustomersRoute
   '/_authenticated/staff/kyc': typeof AuthenticatedStaffKycRoute
 }
 export interface FileRouteTypes {
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transfer'
     | '/accounts/$id'
+    | '/staff/customers'
     | '/staff/kyc'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transfer'
     | '/accounts/$id'
+    | '/staff/customers'
     | '/staff/kyc'
   id:
     | '__root__'
@@ -139,6 +151,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/transfer'
     | '/_authenticated/accounts/$id'
+    | '/_authenticated/staff/customers'
     | '/_authenticated/staff/kyc'
   fileRoutesById: FileRoutesById
 }
@@ -213,6 +226,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedStaffKycRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/staff/customers': {
+      id: '/_authenticated/staff/customers'
+      path: '/staff/customers'
+      fullPath: '/staff/customers'
+      preLoaderRoute: typeof AuthenticatedStaffCustomersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/accounts/$id': {
       id: '/_authenticated/accounts/$id'
       path: '/$id'
@@ -242,6 +262,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedTransferRoute: typeof AuthenticatedTransferRoute
+  AuthenticatedStaffCustomersRoute: typeof AuthenticatedStaffCustomersRoute
   AuthenticatedStaffKycRoute: typeof AuthenticatedStaffKycRoute
 }
 
@@ -251,6 +272,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedTransferRoute: AuthenticatedTransferRoute,
+  AuthenticatedStaffCustomersRoute: AuthenticatedStaffCustomersRoute,
   AuthenticatedStaffKycRoute: AuthenticatedStaffKycRoute,
 }
 
