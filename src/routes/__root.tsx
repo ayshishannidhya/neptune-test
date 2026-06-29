@@ -78,14 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Neptune Bank" },
+      { name: "description", content: "Banking Insights analyzes banking system Java files to provide insights." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Neptune Bank" },
+      { property: "og:description", content: "Banking Insights analyzes banking system Java files to provide insights." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Neptune Bank" },
+      { name: "twitter:description", content: "Banking Insights analyzes banking system Java files to provide insights." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9589453d-6caf-414c-80c7-d7d3191bf149/id-preview-1ed2888d--b48363aa-e6f8-457d-aee6-866c3682fb07.lovable.app-1782732402259.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9589453d-6caf-414c-80c7-d7d3191bf149/id-preview-1ed2888d--b48363aa-e6f8-457d-aee6-866c3682fb07.lovable.app-1782732402259.png" },
     ],
     links: [
       {
